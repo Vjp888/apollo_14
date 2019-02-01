@@ -15,4 +15,16 @@ RSpec.describe 'As a visitor', type: :feature do
     expect(page).to have_content(astro_3.job)
 
   end
+
+  it "Shows average age of all astronauts on the page" do
+    astro_1 = Astronaut.create(name: "Steve", age: 23, job: 'engineer')
+    astro_2 = Astronaut.create(name: "Perry", age: 34, job: 'writer')
+    astro_3 = Astronaut.create(name: "Carmichle", age: 54, job: 'technician')
+
+    average = Astronaut.average_age
+  
+    visit astronauts_path
+
+    expect(page).to have have_content("Average age: 37")
+  end
 end
